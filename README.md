@@ -12,3 +12,4 @@
 - **Eliminar tareas**: Los usuarios pueden eliminar tareas completadas o que ya no necesitan.
 - **Persistencia de datos**: Las tareas se mantienen incluso después de cerrar la aplicación.
 - **Interfaz intuitiva**: Diseño limpio y fácil de usar.
+- **Multilenguaje**: Soporta los siguientes idiomas: Inglés y Español.
