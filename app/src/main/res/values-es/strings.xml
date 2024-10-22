@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Simple Tasks</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="tareas">Tareas</string>
+    <string name="nueva_tarea">Nueva Tarea</string>
+    <string name="agregar_nueva_tarea">Agregar nueva tarea</string>
+    <string name="descripci_n_de_la_tarea">Descripción de la tarea</string>
+    <string name="hora_de_inicio_opcional">Hora de inicio (opcional)</string>
+    <string name="hora_de_fin_opcional">Hora de fin (opcional)</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="cancelar">Cancelar</string>
+</resources>
