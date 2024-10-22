@@ -4,7 +4,7 @@
 
 ## Pantalla principal
 
-![Pantalla principal de la aplicación](https://raw.githubusercontent.com/ErikMobileDev/Simple-Task-Android/refs/heads/main/Simple-Task-Readme.png)
+![Pantalla principal de la aplicación modo claro](https://raw.githubusercontent.com/ErikMobileDev/Simple-Task-Android/refs/heads/main/images/Simple-Task-Light.png)![Pantalla principal de la aplicación modo oscuro](https://raw.githubusercontent.com/ErikMobileDev/Simple-Task-Android/refs/heads/main/images/Simple-Task-Dark.png)
 
 ## Características
 
