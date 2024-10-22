@@ -4,7 +4,7 @@
 
 ## Pantalla principal
 
-![Pantalla principal de la aplicación](https://raw.githubusercontent.com/ErikMobileDev/Simple-Task-Android/refs/heads/main/Simple-task-android-image.png)
+![Pantalla principal de la aplicación](https://raw.githubusercontent.com/ErikMobileDev/Simple-Task-Android/refs/heads/main/Simple-Task-Readme.png)
 
 ## Características
 
