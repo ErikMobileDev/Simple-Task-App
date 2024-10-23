@@ -1,6 +1,6 @@
 # Simple Task
 
-**Simple Task** es una aplicación de gestión de tareas diseñada para ayudar a los usuarios a organizar sus actividades diarias de manera sencilla y eficiente.
+**Simple Task** es una aplicación de gestión de tareas diseñada para ayudar a los usuarios a organizar sus actividades diarias de manera sencilla
 
 ## Pantalla principal
 
