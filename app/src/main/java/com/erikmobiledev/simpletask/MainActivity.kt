@@ -27,7 +27,8 @@ class MainActivity : ComponentActivity() {
             TaskManagerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     HomeScreen(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        viewModel
                     )
                 }
             }

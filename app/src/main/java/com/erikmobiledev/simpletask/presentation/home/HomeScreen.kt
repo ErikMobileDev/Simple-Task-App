@@ -1,5 +1,7 @@
 package com.erikmobiledev.simpletask.presentation.home
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,7 +36,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.erikmobiledev.simpletask.R
 import com.erikmobiledev.simpletask.components.TaskComponent
+import java.util.Calendar
 
+@SuppressLint("DefaultLocale")
 @Composable
 fun HomeScreen(
     modifier: Modifier,
@@ -43,6 +49,10 @@ fun HomeScreen(
     var newTaskTitle by remember { mutableStateOf("") }
     var newFirstHour by remember { mutableStateOf("") }
     var newSecondHour by remember { mutableStateOf("") }
+
+    // Variables para controlar el estado del TimePicker
+    var showFirstHourPicker by remember { mutableStateOf(false) }
+    var showSecondHourPicker by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -105,25 +115,28 @@ fun HomeScreen(
                     Column {
                         TextField(
                             value = newTaskTitle,
-                            onValueChange = {
-                                newTaskTitle = it
-                            }, // Actualiza el título de la tarea
+                            onValueChange = { newTaskTitle = it },
                             label = { Text(stringResource(R.string.descripci_n_de_la_tarea)) }
                         )
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        TextField(
-                            value = newFirstHour,
-                            onValueChange = { newFirstHour = it }, // Actualiza la hora de inicio
-                            label = { Text(stringResource(R.string.hora_de_inicio_opcional)) }
-                        )
+                        // Botón para seleccionar la hora de inicio
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = stringResource(R.string.hora_de_inicio_opcional), modifier = Modifier.weight(1f))
+                            TextButton(onClick = { showFirstHourPicker = true }) {
+                                Text(text = newFirstHour.ifEmpty { stringResource(R.string.selecciona_hora) })
+                            }
+                        }
+
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        TextField(
-                            value = newSecondHour,
-                            onValueChange = { newSecondHour = it }, // Actualiza la hora de fin
-                            label = { Text(stringResource(R.string.hora_de_fin_opcional)) }
-                        )
+                        // Botón para seleccionar la hora de fin
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = stringResource(R.string.hora_de_fin_opcional), modifier = Modifier.weight(1f))
+                            TextButton(onClick = { showSecondHourPicker = true }) {
+                                Text(text = newSecondHour.ifEmpty { stringResource(R.string.selecciona_hora) })
+                            }
+                        }
                     }
                 },
                 confirmButton = {
@@ -155,5 +168,47 @@ fun HomeScreen(
                 }
             )
         }
+
+        // Mostrar el TimePicker para la hora de inicio
+        if (showFirstHourPicker) {
+            TimePickerDialog(
+                onDismiss = { showFirstHourPicker = false },
+                onTimeSelected = { hour, minute ->
+                    newFirstHour = String.format("%02d:%02d", hour, minute)
+                    showFirstHourPicker = false
+                }
+            )
+        }
+
+        // Mostrar el TimePicker para la hora de fin
+        if (showSecondHourPicker) {
+            TimePickerDialog(
+                onDismiss = { showSecondHourPicker = false },
+                onTimeSelected = { hour, minute ->
+                    newSecondHour = String.format("%02d:%02d", hour, minute)
+                    showSecondHourPicker = false
+                }
+            )
+        }
+    }
+}
+
+// Composable para el TimePickerDialog
+@Composable
+fun TimePickerDialog(onDismiss: () -> Unit, onTimeSelected: (hour: Int, minute: Int) -> Unit) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+    val minute = calendar.get(Calendar.MINUTE)
+
+    // Usar un Dialogo
+    val timePickerDialog = remember { TimePickerDialog(context, { _, selectedHour, selectedMinute ->
+        onTimeSelected(selectedHour, selectedMinute)
+    }, hour, minute, true) }
+
+    // Mostrar el TimePickerDialog
+    LaunchedEffect(Unit) {
+        timePickerDialog.show()
+        onDismiss() // Llamar a onDismiss al cerrar
     }
 }
