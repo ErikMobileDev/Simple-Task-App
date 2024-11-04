@@ -13,4 +13,5 @@
 - **Persistencia de datos**: Las tareas se mantienen incluso después de cerrar la aplicación.
 - **Interfaz intuitiva**: Diseño limpio y fácil de usar.
 - **Multilenguaje**: Soporta los siguientes idiomas: Inglés y Español.
+- **Modo claro y oscuro**: Diseño claro u oscuro.
 - **Uso de dialogos**
