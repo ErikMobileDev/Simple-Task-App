@@ -15,3 +15,7 @@
 - **Multilenguaje**: Soporta los siguientes idiomas: Inglés y Español.
 - **Modo claro y oscuro**: Diseño claro u oscuro.
 - **Uso de dialogos**
+
+## Tecnologías Utilizadas
+
+- **Room**: Para la persistencia de datos y gestión de la base de datos local.
